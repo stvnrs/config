@@ -13,14 +13,28 @@ $Settings = @"
 }
 "@
 
-$SettingsFilePath = "$Env:APPDATA/Code - Insiders/User/settings.json"
+$SettingsPath = "$Env:APPDATA/Code - Insiders/User"
+$SettingsFilePath = "$SettingsPath/settings.json"
+
+if(!(Test-Path $SettingsPath)){
+    mkdir $SettingsPath
+}
 
 $Settings | Out-File $SettingsFilePath  
 
 $Extensions = @(
+    'ms-vscode.powershell'
+    'mechatroner.rainbow-csv'
+    'GitHub.remotehub'
+    'ms-vscode.azure-repos'
+    'ms-vscode.remote-repositories'
+    'ms-azure-devops.azure-pipelines'
     'ms-toolsai.jupyter'
     'ms-python.python' 
-    'mechatroner.rainbow-csv'
+    'ms-azuretools.vscode-bicep'
+    'ms-dotnettools.vscode-dotnet-runtime'
+    'ms-azuretools.vscode-azureresourcegroups'
+    'ms-azuretools.vscode-azurefunctions'
 )
 
 $Extensions | ForEach-Object {
