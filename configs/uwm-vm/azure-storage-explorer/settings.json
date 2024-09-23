@@ -1,0 +1,4 @@
+{
+    "application.proxy.noProxy": [],
+    "application.proxy.source": "systemProxy"
+}
