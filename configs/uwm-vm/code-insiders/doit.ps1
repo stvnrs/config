@@ -13,7 +13,7 @@ $Settings = @"
 }
 "@
 
-$SettingsFilePath = "$Env:LOCALAPPDATA/Code - Insiders/User/settingses.json"
+$SettingsFilePath = "$Env:APPDATA/Code - Insiders/User/settings.json"
 
 $Settings | Out-File $SettingsFilePath  
 
