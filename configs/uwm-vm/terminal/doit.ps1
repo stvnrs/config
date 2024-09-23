@@ -1,3 +1,5 @@
+$ErrorActionPreference = 'Stop'
+$InformationPreference = 'Continue'
 
 $Stuff = @{
     Settings = @{
