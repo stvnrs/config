@@ -6,7 +6,11 @@ param (
     [Switch]
     $SkipStorageExploer,
     [Switch]
-    $SkipPython
+    $SkipPython,
+    [Switch]
+    $SkipGit,
+    [Switch]
+    $SkipPwsh
 )
 
 $ErrorActionPreference = 'Stop'
@@ -24,9 +28,10 @@ if (!$SkipStorageExploer.IsPresent) {
  & "$PSScriptRoot/azure-storage-explorer/doit.ps1"
 }
 
-if (!$SkipPython.IsPresent) {
-    & "$PSScriptRoot/python/doit.ps1" 
+if (!$SkipGit.IsPresent) {
+    & "$PSScriptRoot/git/doit.ps1" 
 }
 
-
-
+if (!$SkipPwsh.IsPresent) {
+    & "$PSScriptRoot/pwsh/doit.ps1" 
+}
