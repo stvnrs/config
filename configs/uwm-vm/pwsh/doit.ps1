@@ -8,6 +8,7 @@ $Modules = @(
     'az'
     'powershell-yaml'
     'psduckdb'
+    'Microsoft.Graph'
 )
 
 $Modules | ForEach-Object {
