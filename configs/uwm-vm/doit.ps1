@@ -16,22 +16,39 @@ param (
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
 
+$Env:BS_HEADER_CHAR = $Env:BS_HEADER_CHAR ?? '*'
+$Env:BS_SECTION_CHAR = $Env:BS_FOOTER_CHAR ?? '-'
+$Env:BS_FOOTER_CHAR = $Env:BS_FOOTER_CHAR ?? '='
+$Env:BS_BLANK_LINES = $Env:BS_BLANK_LINES ?? 1
+
+function DoIt {
+    param(
+        [string]$Config
+    )
+    $Env:BS_HEADER_CHAR * $Host.UI.RawUI.WindowSize.Width 
+    "Deploying config: $Config"
+    & $(Join-Path $PSScriptRoot $Config 'doit.ps1')
+    "Deploying config: $Config✔️"
+    $Env:BS_FOOTER_CHAR * $Host.UI.RawUI.WindowSize.Width 
+    [Environment]::NewLine * $Env:BS_BLANK_LINES
+}
+
 if (!$SkipTerminal.IsPresent) {
-    & "$PSScriptRoot/terminal/doit.ps1" 
+    DoIt 'Terminal'
 }
 
 if (!$SkipCodeInsiders.IsPresent) {
-    & "$PSScriptRoot/code-insiders/doit.ps1" 
+    DoIt 'code-insiders'
 }
 
 if (!$SkipStorageExploer.IsPresent) {
- & "$PSScriptRoot/azure-storage-explorer/doit.ps1"
+    DoIt 'azure-storage-explorer'
 }
 
 if (!$SkipGit.IsPresent) {
-    & "$PSScriptRoot/git/doit.ps1" 
+    DoIt 'git'
 }
 
 if (!$SkipPwsh.IsPresent) {
-    & "$PSScriptRoot/pwsh/doit.ps1" 
+    DoIt 'pwsh'
 }
