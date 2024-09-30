@@ -13,6 +13,6 @@ $Modules | ForEach-Object {
     if($null -eq $Proxy) {
         pip install $_ 
     } else {
-        pip install $_  --proxy $($Proxy.OriginalString)
+        pip install $_  --proxy $($Proxy)
     }
 }
