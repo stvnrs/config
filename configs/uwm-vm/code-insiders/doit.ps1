@@ -35,6 +35,7 @@ $Extensions = @(
     'ms-dotnettools.vscode-dotnet-runtime'
     'ms-azuretools.vscode-azureresourcegroups'
     'ms-azuretools.vscode-azurefunctions'
+    'ms-toolsai.datawrangler'
 )
 
 $Extensions | ForEach-Object {
