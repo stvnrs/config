@@ -52,3 +52,8 @@ if (!$SkipGit.IsPresent) {
 if (!$SkipPwsh.IsPresent) {
     DoIt 'pwsh'
 }
+
+if (!$SkipPython.IsPresent) {
+    DoIt 'python'
+}
+
