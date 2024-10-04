@@ -2,6 +2,8 @@ $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
 
 $Modules = @(
+    'black'
+    'great_expectations'
     'ipykernel'
     'pandas'
     'openpyxl'
