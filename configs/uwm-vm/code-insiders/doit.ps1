@@ -4,6 +4,8 @@ $InformationPreference = 'Continue'
 
 $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://marketplace.visualstudio.com/')).OriginalString
 
+"Deploying settings..."
+
 $Settings = @"
 {
     "http.proxySupport": "on",
@@ -12,6 +14,8 @@ $Settings = @"
     "http.proxyAuthorization": null
 }
 "@
+
+"Deploying settings✔️"
 
 $SettingsPath = "$Env:APPDATA/Code - Insiders/User"
 $SettingsFilePath = "$SettingsPath/settings.json"
@@ -22,21 +26,27 @@ if(!(Test-Path $SettingsPath)){
 
 $Settings | Out-File $SettingsFilePath  
 
+$Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
+"Installing extensions..."
+
 $Extensions = @(
-    'ms-vscode.powershell'
-    'mechatroner.rainbow-csv'
     'GitHub.remotehub'
-    'ms-vscode.azure-repos'
-    'ms-vscode.remote-repositories'
+    'mechatroner.rainbow-csv'
     'ms-azure-devops.azure-pipelines'
-    'ms-toolsai.jupyter'
-    'ms-python.python' 
+    'ms-azuretools.vscode-azurefunctions'
+    'ms-azuretools.vscode-azureresourcegroups'
     'ms-azuretools.vscode-bicep'
     'ms-dotnettools.vscode-dotnet-runtime'
-    'ms-azuretools.vscode-azureresourcegroups'
-    'ms-azuretools.vscode-azurefunctions'
+    'ms-python.python' 
+    'ms-toolsai.datawrangler'
+    'ms-toolsai.jupyter'
+    'ms-vscode.azure-repos'
+    'ms-vscode.powershell'
+    'ms-vscode.remote-repositories'
 )
 
 $Extensions | ForEach-Object {
     code-insiders --install-extension $_
 }
+
+"Installing extensions✔️"

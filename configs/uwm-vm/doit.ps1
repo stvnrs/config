@@ -15,6 +15,7 @@ param (
 
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
+$PSNativeCommandUseErrorActionPreference = 'true'
 
 $Env:BS_HEADER_CHAR = $Env:BS_HEADER_CHAR ?? '*'
 $Env:BS_SECTION_CHAR = $Env:BS_FOOTER_CHAR ?? '-'
@@ -51,4 +52,9 @@ if (!$SkipGit.IsPresent) {
 
 if (!$SkipPwsh.IsPresent) {
     DoIt 'pwsh'
+}
+
+
+if (!$SkipPython.IsPresent) {
+    DoIt 'python'
 }
