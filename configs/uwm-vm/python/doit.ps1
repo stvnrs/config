@@ -3,6 +3,7 @@ $InformationPreference = 'Continue'
 
 $Modules = @(
     'black'
+    'great_expectations'
     'ipykernel'
     'openpyxl'
     'pandas'
