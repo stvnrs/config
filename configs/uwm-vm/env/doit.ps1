@@ -4,15 +4,15 @@ $PSNativeCommandUseErrorActionPreference = $true
 
 "Setting env..."
 
-if ($env:HTTP_PROXY) {
-    "+ `$env:HTTP_PROXY already set to $env:HTTP_PROXY"
+if ($env:PROXY) {
+    "+ `$env:PROXY already set to $env:PROXY"
 } else {
     $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://www.powershellgallery.com/'))
 
     if ($null -ne $Proxy) {
-        $env:HTTP_PROXY = $Proxy.OriginalString
-        [Environment]::SetEnvironmentVariable("HTTP_PROXY", $env:HTTP_PROXY, [System.EnvironmentVariableTarget]::User)
-        "+ `$env:HTTP_PROXY to $env:HTTP_PROXY"
+        $env:PROXY = $Proxy.OriginalString
+        [Environment]::SetEnvironmentVariable("PROXY", $env:PROXY, [System.EnvironmentVariableTarget]::User)
+        "+ `$env:PROXY to $env:PROXY"
     }    else {
         "+ no proxy detected"
     }
