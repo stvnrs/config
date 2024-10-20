@@ -1,0 +1,77 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "shift+alt+up",
+        "command": "editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+up",
+        "command": "-editor.action.insertCursorAbove",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "-editor.action.insertCursorBelow",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+up",
+        "command": "-editor.action.copyLinesUpAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+down",
+        "command": "-editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "-workbench.action.reopenClosedEditor"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "ctrl+shift+oem_7", //HASH 
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+alt+oem_plus", //EQUALS
+        "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "ctrl+t u",
+        "command": "editor.action.transformToUppercase"
+    },
+    {
+        "key": "ctrl+t c",
+        "command": "editor.action.transformToCamelcase"
+    },
+    {
+        "key": "ctrl+t k",
+        "command": "editor.action.transformToKebabcase"
+    },
+    {
+        "key": "ctrl+t l",
+        "command": "editor.action.transformToLowercase"
+    },
+    {
+        "key": "ctrl+t p",
+        "command": "editor.action.transformToPascalcase"
+    },
+    {
+        "key": "ctrl+t s",
+        "command": "editor.action.transformToSnakecase"
+    },
+    {
+        "key": "ctrl+t t",
+        "command": "editor.action.transformToTitlecase"
+    }
+]
