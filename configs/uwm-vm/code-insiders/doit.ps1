@@ -12,6 +12,8 @@ $Settings = @"
     "http.proxy": "$Proxy",
     "http.proxtStrictSSL": "false",
     "http.proxyAuthorization": null
+    "window.zoomLevel": 0.4,
+    "workbench.colorTheme": "Solarized Dark"
 }
 "@
 
