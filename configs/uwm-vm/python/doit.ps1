@@ -7,6 +7,7 @@ $Modules = @(
     'ipykernel'
     'openpyxl'
     'pandas'
+    'simple-salesforce'
 )
 
 $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://pypi.org'))
