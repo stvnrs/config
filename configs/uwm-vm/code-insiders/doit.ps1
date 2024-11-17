@@ -11,7 +11,7 @@ $Settings = @"
     "http.proxySupport": "on",
     "http.proxy": "$Proxy",
     "http.proxtStrictSSL": "false",
-    "http.proxyAuthorization": null
+    "http.proxyAuthorization": null,
     "window.zoomLevel": 0.4,
     "workbench.colorTheme": "Solarized Dark"
 }
@@ -43,6 +43,7 @@ $Extensions = @(
     'ms-toolsai.datawrangler'
     'ms-toolsai.jupyter'
     'ms-vscode.azure-repos'
+    'ms-vscode.hexeditor'
     'ms-vscode.powershell'
     'ms-vscode.remote-repositories'
 )
