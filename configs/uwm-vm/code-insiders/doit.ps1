@@ -28,6 +28,13 @@ if(!(Test-Path $SettingsPath)){
 
 $Settings | Out-File $SettingsFilePath  
 
+"Deploying key bindings..."
+$KeyBindingsName = 'keybindings.json'
+$KeyBindingsFilePathSource = Join-Path $PSScriptRoot $KeyBindingsName 
+$KeyBindingsFilePathTarget = Join-Path $SettingsPath $KeyBindingsName 
+cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget 
+"Deploying key bindings✔️"
+
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
 "Installing extensions..."
 
