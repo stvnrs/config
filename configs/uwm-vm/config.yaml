@@ -1,0 +1,26 @@
+#use windows env var syntax
+azure-storage-explorer:
+  files:
+    - name: settings
+      Source: settings.json # relative to the 
+      Target: "%APPDATA%/StorageExplorer/settings.json"
+    - name: dave
+      Source: dave.json
+      Target: blah.json
+
+code-insiders:
+  files:
+    - name: key-bindings
+      Source: keybindings.json
+      Target: "%APPDATA%/Code - Insiders/User/settings.json"
+
+python: 
+  packages:
+    - black
+    - great_expectations
+    - harlequin
+    - ipykernel
+    - openpyxl
+    - pandas
+    - simple-salesforce
+  
