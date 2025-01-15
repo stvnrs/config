@@ -13,7 +13,30 @@ $Settings = @"
     "http.proxtStrictSSL": "false",
     "http.proxyAuthorization": null,
     "window.zoomLevel": 0.4,
-    "workbench.colorTheme": "Solarized Dark"
+    "workbench.colorTheme": "Solarized Dark",
+    "terminal.integrated.profiles.windows": {
+
+        "PowerShell": {
+            "path": "pwsh.exe",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "powershell.powerShellDefaultVersion": "pwsh",
+    "powershell.powerShellAdditionalExePaths": {
+        "pwsh": "$($Env:LOCALAPPDATA -replace '\\', '\\')\\powershell\\pwsh.exe"
+    }
 }
 "@
 
