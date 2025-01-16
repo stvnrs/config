@@ -10,7 +10,9 @@ param (
     [Switch]
     $SkipGit,
     [Switch]
-    $SkipPwsh
+    $SkipPwsh,
+    [Switch]
+    $SkipNode
 )
 
 $ErrorActionPreference = 'Stop'
@@ -54,7 +56,11 @@ if (!$SkipPwsh.IsPresent) {
     DoIt 'pwsh'
 }
 
-
 if (!$SkipPython.IsPresent) {
     DoIt 'python'
 }
+
+if (!$SkipNode.IsPresent) {
+    DoIt 'node'
+}
+
