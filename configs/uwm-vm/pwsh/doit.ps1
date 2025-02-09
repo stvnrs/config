@@ -5,7 +5,6 @@ $PSNativeCommandUseErrorActionPreference = $true
 $Modules = @(
     'az'
     'powershell-yaml'
-    'psduckdb'
     'Microsoft.Graph'
 )
 
