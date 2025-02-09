@@ -9,7 +9,7 @@ $Settings = @"
 {
     "http.proxySupport": "on",
     "http.proxy": "$Proxy",
-    "http.proxtStrictSSL": "false",
+    "http.proxyStrictSSL": false,
     "http.proxyAuthorization": null
     "window.zoomLevel": 0.4,
     "workbench.colorTheme": "Solarized Dark"
