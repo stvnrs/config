@@ -3,7 +3,7 @@ $InformationPreference = 'Continue'
 
 $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://marketplace.visualstudio.com/')).OriginalString
 
-"Deploying settings..."
+"Deploying settings for vs code insiders..."
 
 $Settings = @"
 {
@@ -21,8 +21,7 @@ $Settings = @"
         },
         "Command Prompt": {
             "path": [
-                "${env:windir}\\Sysnative\\cmd.exe",
-                "${env:windir}\\System32\\cmd.exe"
+                "C:\\System32\\cmd.exe"
             ],
             "args": [],
             "icon": "terminal-cmd"
@@ -34,7 +33,7 @@ $Settings = @"
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "powershell.powerShellDefaultVersion": "pwsh",
     "powershell.powerShellAdditionalExePaths": {
-        "pwsh": "$($Env:LOCALAPPDATA -replace '\\', '\\')\\powershell\\pwsh.exe"
+         "pwsh": "$($Env:PWSH_DEFAULT_PATH -replace '\\', '\\')"
     }
 }
 "@

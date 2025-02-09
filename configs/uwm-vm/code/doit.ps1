@@ -3,16 +3,38 @@ $InformationPreference = 'Continue'
 
 $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://dev.azure.com/')).OriginalString
 
-"Deploying settings..."
+"Deploying settings for vs code..."
 
 $Settings = @"
 {
     "http.proxySupport": "on",
     "http.proxy": "$Proxy",
     "http.proxyStrictSSL": false,
-    "http.proxyAuthorization": null
+    "http.proxyAuthorization": null,
     "window.zoomLevel": 0.4,
-    "workbench.colorTheme": "Solarized Dark"
+    "workbench.colorTheme": "Solarized Dark",
+    "terminal.integrated.profiles.windows": {
+
+        "PowerShell": {
+            "path": "pwsh.exe",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "C:\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "powershell.powerShellDefaultVersion": "pwsh",
+    "powershell.powerShellAdditionalExePaths": {
+        "pwsh": "$($Env:PWSH_DEFAULT_PATH -replace '\\', '\\')"
+    }
 }
 "@
 
@@ -26,6 +48,13 @@ if(!(Test-Path $SettingsPath)){
 }
 
 $Settings | Out-File $SettingsFilePath  
+
+"Deploying key bindings..."
+$KeyBindingsName = 'keybindings.json'
+$KeyBindingsFilePathSource = Join-Path $PSScriptRoot $KeyBindingsName 
+$KeyBindingsFilePathTarget = Join-Path $SettingsPath $KeyBindingsName 
+cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget 
+"Deploying key bindings✔️"
 
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
 "Installing extensions..."
@@ -42,12 +71,13 @@ $Extensions = @(
     'ms-toolsai.datawrangler'
     'ms-toolsai.jupyter'
     'ms-vscode.azure-repos'
+    'ms-vscode.hexeditor'
     'ms-vscode.powershell'
     'ms-vscode.remote-repositories'
 )
 
 $Extensions | ForEach-Object {
-    code-insiders --install-extension $_
+    code --install-extension $_
 }
 
 "Installing extensions✔️"
