@@ -7,7 +7,9 @@ $PSNativeCommandUseErrorActionPreference = $true
 if ($env:PROXY) {
     "+ `$env:PROXY already set to $env:PROXY"
 } else {
-    $Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://www.powershellgallery.com/'))
+    . "$PSScriptRoot\..\..\tools\proxy.ps1"
+    $TestUri = 'https://www.powershellgallery.com/'
+    $Proxy = Get-Proxy -TestUri $TestUri
 
     if ($null -ne $Proxy) {
         $env:PROXY = $Proxy.OriginalString
@@ -18,4 +20,4 @@ if ($env:PROXY) {
     }
 }
 
-"Setting env✔️"
+"Setting env - done!"
