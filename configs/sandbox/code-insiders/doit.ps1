@@ -1,8 +1,6 @@
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
 
-$Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://marketplace.visualstudio.com/')).OriginalString
-
 "Deploying settings..."
 
 $Settings = @"
