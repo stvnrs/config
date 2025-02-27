@@ -31,7 +31,7 @@ $Settings = @"
 }
 "@
 
-"Deploying settings✔️"
+
 
 $SettingsPath = "$Env:APPDATA/Code - Insiders/User"
 $SettingsFilePath = "$SettingsPath/settings.json"
@@ -41,13 +41,14 @@ if(!(Test-Path $SettingsPath)){
 }
 
 $Settings | Out-File $SettingsFilePath  
+"Deploying settings -done!"
 
 "Deploying key bindings..."
 $KeyBindingsName = 'keybindings.json'
-$KeyBindingsFilePathSource = Join-Path "..\..\shared\code-insiders" $KeyBindingsName 
+$KeyBindingsFilePathSource = Join-Path "$PSScriptRoot\..\..\..\shared\code-insiders" $KeyBindingsName 
 $KeyBindingsFilePathTarget = Join-Path $SettingsPath $KeyBindingsName 
 cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget 
-"Deploying key bindings✔️"
+"Deploying key bindings -done!"
 
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
 "Installing extensions..."
@@ -74,4 +75,4 @@ $Extensions | ForEach-Object {
     code-insiders --install-extension $_
 }
 
-"Installing extensions✔️"
+"Installing extensions - done"
