@@ -3,9 +3,8 @@ $InformationPreference = 'Continue'
 $PSNativeCommandUseErrorActionPreference = $true
 
 $Modules = @(
-    'az'
     'powershell-yaml'
-    'Microsoft.Graph'
+    'az'
 )
 
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 

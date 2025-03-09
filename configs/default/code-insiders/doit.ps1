@@ -9,10 +9,10 @@ $Settings = @"
 {
     "http.proxySupport": "on",
     "http.proxy": "$Proxy",
-    "http.proxtStrictSSL": "false",
+    "http.proxyStrictSSL": "false",
     "http.proxyAuthorization": null,
     "window.zoomLevel": 0.4,
-    "workbench.colorTheme": "Solarized Dark",
+    "workbench.colorTheme": "${env:CODE_INSIDERS_THEME}",
     "terminal.integrated.profiles.windows": {
 
         "PowerShell": {
@@ -21,8 +21,7 @@ $Settings = @"
         },
         "Command Prompt": {
             "path": [
-                "${env:windir}\\Sysnative\\cmd.exe",
-                "${env:windir}\\System32\\cmd.exe"
+                "${env:windir -replace '\', '\\'}\\System32\\cmd.exe"
             ],
             "args": [],
             "icon": "terminal-cmd"
@@ -38,6 +37,17 @@ $Settings = @"
     }
 }
 "@
+
+$Extensions = @(
+    'GitHub.remotehub'
+    'mechatroner.rainbow-csv'
+    'ms-dotnettools.vscode-dotnet-runtime'
+    'ms-toolsai.datawrangler'
+    'ms-vscode.azure-repos'
+    'ms-vscode.hexeditor'
+    'ms-vscode.powershell'
+    'ms-vscode.remote-repositories'
+)
 
 "Deploying settings✔️"
 
@@ -60,22 +70,7 @@ cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
 "Installing extensions..."
 
-$Extensions = @(
-    'GitHub.remotehub'
-    'mechatroner.rainbow-csv'
-    'ms-azure-devops.azure-pipelines'
-    'ms-azuretools.vscode-azurefunctions'
-    'ms-azuretools.vscode-azureresourcegroups'
-    'ms-azuretools.vscode-bicep'
-    'ms-dotnettools.vscode-dotnet-runtime'
-    'ms-python.python' 
-    'ms-toolsai.datawrangler'
-    'ms-toolsai.jupyter'
-    'ms-vscode.azure-repos'
-    'ms-vscode.hexeditor'
-    'ms-vscode.powershell'
-    'ms-vscode.remote-repositories'
-)
+
 
 $Extensions | ForEach-Object {
     code-insiders --install-extension $_

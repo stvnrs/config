@@ -8,8 +8,6 @@ $Stuff = @{
     }
 }
 
-
-
 $Stuff.GetEnumerator() | ForEach-Object {
     $Message = "Copying $($_.Value.Source) to $($_.Value.Target)" 
 
