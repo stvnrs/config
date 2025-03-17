@@ -1,27 +1,32 @@
+#requires -modules pave-logger
+#requires -modules pave-utils
+
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
+$PSNativeCommandUseErrorActionPreference = $true
 
-$Proxy = ([System.Net.WebRequest]::GetSystemWebProxy().GetProxy('https://marketplace.visualstudio.com/')).OriginalString
 
-"Deploying settings..."
+#region config
+$Proxy = Get-Proxy 'https://dev.azure.com/'
+$SettingsPath = "$Env:APPDATA/Code - Insiders/User"
+$SettingsFilePath = "$SettingsPath/settings.json"
 
 $Settings = @"
 {
     "http.proxySupport": "on",
     "http.proxy": "$Proxy",
-    "http.proxyStrictSSL": "false",
+    "http.proxyStrictSSL": false,
     "http.proxyAuthorization": null,
     "window.zoomLevel": 0.4,
-    "workbench.colorTheme": "${env:CODE_INSIDERS_THEME}",
+    "workbench.colorTheme": "$env:CODE_INSIDERS_THEME",
     "terminal.integrated.profiles.windows": {
-
         "PowerShell": {
             "path": "pwsh.exe",
             "icon": "terminal-powershell"
         },
         "Command Prompt": {
             "path": [
-                "${env:windir -replace '\', '\\'}\\System32\\cmd.exe"
+                "$($env:windir -replace '\\', '\\')\\System32\\cmd.exe"
             ],
             "args": [],
             "icon": "terminal-cmd"
@@ -33,7 +38,7 @@ $Settings = @"
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "powershell.powerShellDefaultVersion": "pwsh",
     "powershell.powerShellAdditionalExePaths": {
-        "pwsh": "$($Env:LOCALAPPDATA -replace '\\', '\\')\\powershell\\pwsh.exe"
+        "pwsh": "$env:PWSH_DEFAULT_PATH"
     }
 }
 "@
@@ -48,11 +53,10 @@ $Extensions = @(
     'ms-vscode.powershell'
     'ms-vscode.remote-repositories'
 )
+#endregion
 
-"Deploying settings✔️"
-
-$SettingsPath = "$Env:APPDATA/Code - Insiders/User"
-$SettingsFilePath = "$SettingsPath/settings.json"
+#region settings
+Push-LogAction "Deploying settings"
 
 if(!(Test-Path $SettingsPath)){
     mkdir $SettingsPath
@@ -60,20 +64,26 @@ if(!(Test-Path $SettingsPath)){
 
 $Settings | Out-File $SettingsFilePath  
 
-"Deploying key bindings..."
+Pop-LogAction
+#endregion
+
+#region keybindings
+Push-LogAction "Deploying key bindings"
+
 $KeyBindingsName = 'keybindings.json'
 $KeyBindingsFilePathSource = Join-Path $PSScriptRoot $KeyBindingsName 
 $KeyBindingsFilePathTarget = Join-Path $SettingsPath $KeyBindingsName 
 cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget 
-"Deploying key bindings✔️"
 
-$Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
-"Installing extensions..."
+Pop-LogAction
+#endregion
 
-
+#region extensions
+Push-LogAction "Installing extensions"
 
 $Extensions | ForEach-Object {
     code-insiders --install-extension $_
 }
 
-"Installing extensions✔️"
+Pop-LogAction
+#endregion
