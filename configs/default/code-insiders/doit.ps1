@@ -33,7 +33,7 @@ $Settings = @"
     "terminal.integrated.defaultProfile.windows": "PowerShell",
     "powershell.powerShellDefaultVersion": "pwsh",
     "powershell.powerShellAdditionalExePaths": {
-        "pwsh": "$($Env:LOCALAPPDATA -replace '\\', '\\')\\powershell\\pwsh.exe"
+        "pwsh": "$($Env:PWSH_DEFAULT_PATH -replace '\\', '\\')"
     }
 }
 "@
@@ -69,8 +69,6 @@ cp $KeyBindingsFilePathSource $KeyBindingsFilePathTarget
 
 $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width 
 "Installing extensions..."
-
-
 
 $Extensions | ForEach-Object {
     code-insiders --install-extension $_
