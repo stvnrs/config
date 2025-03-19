@@ -12,7 +12,12 @@ $Env:BS_SECTION_CHAR * $Host.UI.RawUI.WindowSize.Width
 
 $Modules | ForEach-Object {
     "+ Installing $_"
-    Install-Module -Name $_ -Force
+    if(Get-Module -ListAvailable $_){
+        "+ $_ is already installed"
+    } else {
+        Install-Module -Name $_ -Force
+    }
+
     "+ Installing $_✔️"
 }
 "Intalling modules✔️"
