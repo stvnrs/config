@@ -1,9 +1,12 @@
+#requires -modules pave-logger
+#requires -modules pave-utils
+
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
 $PSNativeCommandUseErrorActionPreference = $true
 
-"Setting env..."
+Push-LogAction "Setting env"
 
-$env:CODE_INSIDERS_THEME = 'Solarized Dark'
+Add-UserEnvVar -Name 'CODE_INSIDERS_THEME' -Value 'Solarized Dark'
 
-"Setting env - done!"
+Pop-Location
